@@ -25,6 +25,8 @@ import com.abederrahmen.bng.exception.ResourceNotFoundException;
 @RestController
 @RequestMapping("/api")
 public class PlanteController {
+	
+	@Autowired
 	private PlanteRepository planteRepository;
 	
 	// get all plantes

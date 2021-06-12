@@ -42,8 +42,8 @@ public class Staff {
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "staff_roles",
-            joinColumns = @JoinColumn(name = "satff_id"),
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
     
@@ -60,7 +60,13 @@ public class Staff {
 		this.password = password;
 		this.roles = roles;
 	}
-
+	
+	public Staff(String username, String matricule, String email, String password ) {
+		this.username = username;
+		this.matricule = matricule;
+		this.email = email;
+		this.password = password;
+	}
 
 
 	public Long getId() {
