@@ -6,9 +6,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -54,6 +58,24 @@ public class Demande {
 	@Column(name = "etat")
 	private Boolean etat;
 	
+	
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumns({
+        @JoinColumn(name="PLANTE_ID", referencedColumnName="ID")
+    })
+	private Plante plante;
+
+
+	public Plante getPlante() {
+		return plante;
+	}
+
+
+	public void setPlante(Plante plante) {
+		this.plante = plante;
+	}
+
 
 	public long getId() {
 		return id;
@@ -145,8 +167,11 @@ public class Demande {
 	}
 	
 	
+	
+
+
 	public Demande(long id, String nom, @Size(max = 8) @NotBlank String cin, String localisation, String numTel,
-			String city, @NotBlank @Size(max = 15) Double quatite, Date dateRetour, Boolean etat) {
+			String city, @NotBlank @Size(max = 15) Double quatite, Date dateRetour, Boolean etat,Plante plante) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -157,6 +182,7 @@ public class Demande {
 		this.quatite = quatite;
 		this.dateRetour = dateRetour;
 		this.etat = etat;
+		this.plante = plante;
 	}
 
 

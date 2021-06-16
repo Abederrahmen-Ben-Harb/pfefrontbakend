@@ -3,9 +3,14 @@ package com.abederrahmen.bng.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -19,18 +24,32 @@ public class Plante {
 	
 	@Column(name = "name")
 	private String nomPlante;
-
-	@Column(name = "description")
-	private String description ;
 	
-
-	@Column(name = "type")
-	private Long type;
+	
+	@Column(name = "description")
+	private String description;
+	
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumns({
+        @JoinColumn(name="TYPE_ID", referencedColumnName="ID")
+    })
+	private Type type;
 
 
 	
 	public long getId() {
 		return id;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 
@@ -47,29 +66,20 @@ public class Plante {
 	public void setNomPlante(String nomPlante) {
 		this.nomPlante = nomPlante;
 	}
+	
+	
 
-
-	public String getDescription() {
-		return description;
-	}
-
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-
-	public Long getType() {
+	public Type getType() {
 		return type;
 	}
 
 
-	public void setType(Long type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 
 
-	public Plante(long id, String nomPlante, String description, Long type) {
+	public Plante(long id, String nomPlante, String description, Type type) {
 		super();
 		this.id = id;
 		this.nomPlante = nomPlante;
