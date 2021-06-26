@@ -46,6 +46,12 @@ public class DemandeController {
 	}
 	
 	
+	// create demande by id rest api
+	@PostMapping("/demandes/{id}")
+	public Demande createDemandeByID(@RequestBody Demande demande, Long id) {
+		return demandeRepository.save(demande);
+	}
+	
 	// get demande by id rest api
 	@GetMapping("/demandes/{id}")
 	public ResponseEntity<Demande> getDemandeById(@PathVariable Long id) {

@@ -12,4 +12,25 @@ public class Type {
 	@Enumerated(EnumType.STRING)
 	@Column(length = 20)
 	private EType name;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public EType getName() {
+		return name;
+	}
+
+	public void setName(EType name) {
+		this.name = name;
+	}
+	
+	
+	
+	
+	
 }

@@ -56,7 +56,7 @@ public class Demande {
 	
 	
 	@Column(name = "etat")
-	private Boolean etat;
+	private String etat;
 	
 	
 	
@@ -65,6 +65,26 @@ public class Demande {
         @JoinColumn(name="PLANTE_ID", referencedColumnName="ID")
     })
 	private Plante plante;
+	
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumns({
+        @JoinColumn(name="USERE_ID", referencedColumnName="ID")
+    })
+	private User user;
+	
+	
+	
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 
 	public Plante getPlante() {
@@ -157,12 +177,12 @@ public class Demande {
 	}
 
 
-	public Boolean getEtat() {
+	public String getEtat() {
 		return etat;
 	}
 
 
-	public void setEtat(Boolean etat) {
+	public void setEtat(String etat) {
 		this.etat = etat;
 	}
 	
@@ -171,7 +191,7 @@ public class Demande {
 
 
 	public Demande(long id, String nom, @Size(max = 8) @NotBlank String cin, String localisation, String numTel,
-			String city, @NotBlank @Size(max = 15) Double quatite, Date dateRetour, Boolean etat,Plante plante) {
+			String city, @NotBlank @Size(max = 15) Double quatite, Date dateRetour, String etat,Plante plante, User user) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -183,6 +203,7 @@ public class Demande {
 		this.dateRetour = dateRetour;
 		this.etat = etat;
 		this.plante = plante;
+		this.user = user;
 	}
 
 

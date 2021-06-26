@@ -4,9 +4,13 @@ package com.abederrahmen.bng.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -23,6 +27,21 @@ public class Intervention {
 	private String description ;
 	
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumns({
+        @JoinColumn(name="USERE_ID", referencedColumnName="ID")
+    })
+	private User user;
+	
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -39,10 +58,11 @@ public class Intervention {
 		this.description = description;
 	}
 
-	public Intervention(long id, String description, String image) {
+	public Intervention(long id, String description, String image, User user) {
 		super();
 		this.id = id;
 		this.description = description;
+		this.user = user;
 	}
 
 	public Intervention() {

@@ -22,7 +22,7 @@ import com.abederrahmen.bng.repository.AdminRepository;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/admins")
 public class AdminController {
 	
 	 @Autowired

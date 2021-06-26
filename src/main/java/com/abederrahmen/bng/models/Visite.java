@@ -5,9 +5,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -27,8 +31,23 @@ public class Visite {
 	
 	
 	@Column(name = "etat")
-	private Boolean etat ;
+	private String etat ;
 	
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumns({
+        @JoinColumn(name="USERE_ID", referencedColumnName="ID")
+    })
+	private User user;
+	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public long getId() {
 		return id;
@@ -55,21 +74,22 @@ public class Visite {
 	}
 	
 	
-	public Boolean getEtat() {
+	public String getEtat() {
 		return etat;
 	}
 	
 	
-	public void setEtat(Boolean etat) {
+	public void setEtat(String etat) {
 		this.etat = etat;
 	}
 
-	public Visite(long id, Date date, String description, Boolean etat) {
+	public Visite(long id, Date date, String description, String etat, User user) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.description = description;
 		this.etat = etat;
+		this.user = user;
 	}
 
 	public Visite() {

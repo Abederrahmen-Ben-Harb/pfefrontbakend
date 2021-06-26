@@ -56,6 +56,7 @@ public class PlanteController {
 			
 			plante.setNomPlante(planteDetails.getNomPlante());
 			plante.setDescription(planteDetails.getDescription());
+			plante.setImage(planteDetails.getImage());
 			plante.setType(planteDetails.getType());
 			
 			Plante updatePlante = planteRepository.save(plante);

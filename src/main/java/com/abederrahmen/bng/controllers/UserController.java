@@ -65,7 +65,7 @@ public class UserController {
 	
 	// delete user rest api
 	@DeleteMapping("/users/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteStaff(@PathVariable Long id){
+	public ResponseEntity<Map<String, Boolean>> deleteUser(@PathVariable Long id){
 		User user = userRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User not exist with id :" + id));
 		
