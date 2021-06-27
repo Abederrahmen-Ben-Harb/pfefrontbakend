@@ -25,8 +25,9 @@ import com.abederrahmen.bng.exception.ResourceNotFoundException;
 @RestController
 @RequestMapping("/api/visites")
 public class VisiteController {
-	
-private VisiteRepository visiteRepository;
+		
+		@Autowired
+		private VisiteRepository visiteRepository;
 	
 		// get all visites
 		@GetMapping("/visites")

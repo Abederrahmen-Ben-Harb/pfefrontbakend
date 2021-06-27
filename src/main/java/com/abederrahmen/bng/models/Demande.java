@@ -31,8 +31,6 @@ public class Demande {
 	private String nom;
 	
 	@Column(name = "cin")
-	@Size(max =8)
-	@NotBlank
 	private String cin;
 	
 	@Column(name = "localisation")
@@ -45,10 +43,9 @@ public class Demande {
 	@Column(name = "city")
 	private String city ;
 	
-	 @NotBlank
-	 @Size(max = 15)
+
 	 @Column(name = "quantite")
-	 private Double quatite;
+	 private Double quantite;
 	 
 	 
 	@Column(name = "dateRetour")
@@ -157,13 +154,13 @@ public class Demande {
 	}
 
 
-	public Double getQuatite() {
-		return quatite;
+	public Double getQuantite() {
+		return quantite;
 	}
 
 
-	public void setQuatite(Double quatite) {
-		this.quatite = quatite;
+	public void setQuantite(Double quantite) {
+		this.quantite = quantite;
 	}
 
 
@@ -191,7 +188,7 @@ public class Demande {
 
 
 	public Demande(long id, String nom, @Size(max = 8) @NotBlank String cin, String localisation, String numTel,
-			String city, @NotBlank @Size(max = 15) Double quatite, Date dateRetour, String etat,Plante plante, User user) {
+			String city, @NotBlank @Size(max = 15) Double quantite, Date dateRetour, String etat,Plante plante, User user) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -199,7 +196,7 @@ public class Demande {
 		this.localisation = localisation;
 		this.numTel = numTel;
 		this.city = city;
-		this.quatite = quatite;
+		this.quantite = quantite;
 		this.dateRetour = dateRetour;
 		this.etat = etat;
 		this.plante = plante;

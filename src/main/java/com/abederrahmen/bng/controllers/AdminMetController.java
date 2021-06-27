@@ -28,7 +28,7 @@ import com.abederrahmen.bng.repository.AdminMetRepository;
 public class AdminMetController {
 	
 		@Autowired
-		AdminMetRepository adminMetRepository;
+		private AdminMetRepository adminMetRepository;
 	 
 	 	// get all adminMetier
 		@GetMapping("/adminMet")

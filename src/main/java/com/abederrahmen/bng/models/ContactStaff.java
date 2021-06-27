@@ -15,12 +15,12 @@ public class ContactStaff {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotBlank
+	
 	@Column(name = "emetteur")
 	private String emetteur;
 	
 	
-	@NotBlank
+	
 	@Column(name = "recepteur")
 	private String recepteur;
 	
@@ -78,6 +78,11 @@ public class ContactStaff {
 		this.emetteur = emetteur;
 		this.recepteur = recepteur;
 		this.message = message;
+	}
+	
+	
+	public ContactStaff () {
+		
 	}
 	
 	

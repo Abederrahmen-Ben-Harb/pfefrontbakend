@@ -26,8 +26,8 @@ import com.abederrahmen.bng.repository.ChercheurRepository;
 @RequestMapping("/api/chercheurs")
 public class ChercheurController {
 	
-	@Autowired
-	ChercheurRepository chercheurRepository;
+			@Autowired
+			private ChercheurRepository chercheurRepository;
 	
 			// get all chercheurs
 			@GetMapping("/chercheurs")

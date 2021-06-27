@@ -26,7 +26,7 @@ import com.abederrahmen.bng.repository.AdminRepository;
 public class AdminController {
 	
 	 @Autowired
-	 AdminRepository adminRepository;
+	 private AdminRepository adminRepository;
 	 
 	 	// get all admins
 		@GetMapping("/admins")

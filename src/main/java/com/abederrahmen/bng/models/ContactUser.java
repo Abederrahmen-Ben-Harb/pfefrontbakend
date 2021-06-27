@@ -14,12 +14,11 @@ public class ContactUser {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotBlank
+	
 	@Column(name = "emetteur")
 	private String emetteur;
 	
 	
-	@NotBlank
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns({
         @JoinColumn(name="USERE_ID", referencedColumnName="ID")
@@ -77,6 +76,10 @@ public class ContactUser {
 		this.emetteur = emetteur;
 		this.user = user;
 		this.message = message;
+	}
+	
+	public ContactUser() {
+		
 	}
 	
 	

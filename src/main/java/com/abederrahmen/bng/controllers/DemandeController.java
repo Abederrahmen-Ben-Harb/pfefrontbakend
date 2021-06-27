@@ -68,7 +68,7 @@ public class DemandeController {
 				.orElseThrow(() -> new ResourceNotFoundException("Demande not exist with id :" + id));
 		
 		demande.setNom(demandeDetails.getNom());
-		demande.setQuatite(demandeDetails.getQuatite());
+		demande.setQuantite(demandeDetails.getQuantite());
 		demande.setEtat(demandeDetails.getEtat());
 		demande.setCin(demandeDetails.getCin());
 		demande.setLocalisation(demande.getLocalisation());
