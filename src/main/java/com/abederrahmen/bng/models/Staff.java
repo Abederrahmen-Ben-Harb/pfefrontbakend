@@ -47,21 +47,32 @@ public class Staff {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
     
-    
+    @NotBlank
+    @Size(min = 3 ,max = 40)
+    private String role;
     
     public Staff() {
     	
     }
 
-	public Staff(String username, String matricule, String email, String password, Set <Role> roles) {
+	public Staff(String username, String matricule, String email, String password,String role, Set <Role> roles) {
 		this.username = username;
 		this.matricule = matricule;
 		this.email = email;
 		this.password = password;
+		this.role = role;
 		this.roles = roles;
 	}
 
+	
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	public Long getId() {
 		return id;

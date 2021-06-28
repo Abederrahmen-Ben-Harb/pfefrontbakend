@@ -21,7 +21,7 @@ import com.abederrahmen.bng.models.Plante;
 import com.abederrahmen.bng.repository.PlanteRepository;
 import com.abederrahmen.bng.exception.ResourceNotFoundException;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
 public class PlanteController {

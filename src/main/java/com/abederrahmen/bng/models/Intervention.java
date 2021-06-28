@@ -27,19 +27,16 @@ public class Intervention {
 	private String description ;
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-        @JoinColumn(name="USERE_ID", referencedColumnName="ID")
-    })
-	private User user;
+	@Column(name="user_id")
+	private Long user_id;
 	
 	
-	public User getUser() {
-		return user;
+	public Long getUser() {
+		return user_id;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(long user_id) {
+		this.user_id = user_id;
 	}
 
 	public long getId() {
@@ -58,11 +55,11 @@ public class Intervention {
 		this.description = description;
 	}
 
-	public Intervention(long id, String description, String image, User user) {
+	public Intervention(long id, String description, String image, Long user_id) {
 		super();
 		this.id = id;
 		this.description = description;
-		this.user = user;
+		this.user_id = user_id;
 	}
 
 	public Intervention() {

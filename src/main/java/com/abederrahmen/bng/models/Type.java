@@ -1,5 +1,7 @@
 package com.abederrahmen.bng.models;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,9 +11,11 @@ public class Type {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	
 	@Enumerated(EnumType.STRING)
 	@Column(length = 20)
 	private EType name;
+	
 
 	public long getId() {
 		return id;

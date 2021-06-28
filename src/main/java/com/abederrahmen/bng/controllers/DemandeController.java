@@ -71,10 +71,12 @@ public class DemandeController {
 		demande.setQuantite(demandeDetails.getQuantite());
 		demande.setEtat(demandeDetails.getEtat());
 		demande.setCin(demandeDetails.getCin());
-		demande.setLocalisation(demande.getLocalisation());
+		demande.setLocalisation(demandeDetails.getLocalisation());
 		demande.setNumTel(demandeDetails.getNumTel());
 		demande.setCity(demandeDetails.getCity());
 		demande.setDateRetour(demandeDetails.getDateRetour());
+		demande.setUser(demandeDetails.getUser());
+		demande.setPlante(demandeDetails.getPlante());
 		
 		Demande updatedDemande = demandeRepository.save(demande);
 		return ResponseEntity.ok(updatedDemande);

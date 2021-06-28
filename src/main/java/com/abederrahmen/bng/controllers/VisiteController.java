@@ -59,6 +59,7 @@ public class VisiteController {
 			visite.setDate(visiteDetails.getDate());
 			visite.setDescription(visiteDetails.getDescription());
 			visite.setEtat(visiteDetails.getEtat());
+			visite.setUser(visiteDetails.getUser());
 			
 			Visite updateVisite = visiteRepository.save(visite);
 			return ResponseEntity.ok(updateVisite);

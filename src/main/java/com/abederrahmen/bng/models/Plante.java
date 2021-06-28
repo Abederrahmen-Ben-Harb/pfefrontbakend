@@ -34,11 +34,8 @@ public class Plante {
 	private String image;
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-        @JoinColumn(name="TYPE_ID", referencedColumnName="ID")
-    })
-	private Type type;
+	@Column(name = "type_id")
+	private Long type_id;
 
 
 	
@@ -83,23 +80,23 @@ public class Plante {
 	
 	
 
-	public Type getType() {
-		return type;
+	public Long getType() {
+		return type_id;
 	}
 
 
-	public void setType(Type type) {
-		this.type = type;
+	public void setType(Long type_id) {
+		this.type_id = type_id;
 	}
 
 
-	public Plante(long id, String nomPlante, String description, String image, Type type) {
+	public Plante(long id, String nomPlante, String description, String image, Long type_id) {
 		super();
 		this.id = id;
 		this.nomPlante = nomPlante;
 		this.description = description;
 		this.image = image;
-		this.type = type;
+		this.type_id = type_id;
 	}
 
 

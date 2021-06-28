@@ -59,6 +59,7 @@ public class StaffController {
 			staff.setMatricule(staffDetails.getMatricule());
 			staff.setEmail(staffDetails.getEmail());
 			staff.setPassword(staffDetails.getPassword());
+			staff.setRole(staffDetails.getRole());
 			staff.setRoles(staffDetails.getRoles());
 			
 			Staff updatedStaff = staffRepository.save(staff);

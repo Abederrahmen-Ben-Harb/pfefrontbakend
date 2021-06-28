@@ -34,19 +34,16 @@ public class Visite {
 	private String etat ;
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-        @JoinColumn(name="USERE_ID", referencedColumnName="ID")
-    })
-	private User user;
+	@Column(name="user_id")
+	private Long user_id;
 	
 
-	public User getUser() {
-		return user;
+	public Long getUser() {
+		return user_id;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(Long user_id) {
+		this.user_id = user_id;
 	}
 
 	public long getId() {
@@ -83,13 +80,13 @@ public class Visite {
 		this.etat = etat;
 	}
 
-	public Visite(long id, Date date, String description, String etat, User user) {
+	public Visite(long id, Date date, String description, String etat, Long user_id) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.description = description;
 		this.etat = etat;
-		this.user = user;
+		this.user_id = user_id;
 	}
 
 	public Visite() {

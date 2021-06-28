@@ -59,6 +59,7 @@ public class InterventionController {
 				.orElseThrow(() -> new ResourceNotFoundException("Intervention not exist with id :" + id));
 		
 		intervention.setDescription(interventionDetails.getDescription());
+		intervention.setUser(interventionDetails.getUser());
 		
 		Intervention updateIntervention = interventionRepository.save(intervention);
 		return ResponseEntity.ok(updateIntervention);

@@ -57,40 +57,34 @@ public class Demande {
 	
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-        @JoinColumn(name="PLANTE_ID", referencedColumnName="ID")
-    })
-	private Plante plante;
+	@Column(name = "plante_id")
+	private Long plante_id;
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-        @JoinColumn(name="USERE_ID", referencedColumnName="ID")
-    })
-	private User user;
+	@Column(name = "user_id")
+	private Long user_id;
 	
 	
 	
 
 
-	public User getUser() {
-		return user;
+	public Long getUser() {
+		return user_id;
 	}
 
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(Long user_id) {
+		this.user_id = user_id;
 	}
 
 
-	public Plante getPlante() {
-		return plante;
+	public Long getPlante() {
+		return plante_id;
 	}
 
 
-	public void setPlante(Plante plante) {
-		this.plante = plante;
+	public void setPlante(Long plante_id) {
+		this.plante_id = plante_id;
 	}
 
 
@@ -188,7 +182,7 @@ public class Demande {
 
 
 	public Demande(long id, String nom, @Size(max = 8) @NotBlank String cin, String localisation, String numTel,
-			String city, @NotBlank @Size(max = 15) Double quantite, Date dateRetour, String etat,Plante plante, User user) {
+			String city, @NotBlank @Size(max = 15) Double quantite, Date dateRetour, String etat,Long plante_id, Long user_id) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -199,8 +193,8 @@ public class Demande {
 		this.quantite = quantite;
 		this.dateRetour = dateRetour;
 		this.etat = etat;
-		this.plante = plante;
-		this.user = user;
+		this.plante_id = plante_id;
+		this.user_id = user_id;
 	}
 
 
