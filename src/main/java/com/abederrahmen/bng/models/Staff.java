@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
-@Table(	name = "staffs", 
+@Table(	name = "users", 
 		uniqueConstraints = { 
 			@UniqueConstraint(columnNames = "username"),
 			@UniqueConstraint(columnNames = "email") 
@@ -27,10 +27,6 @@ public class Staff {
     @Size(min = 3 ,max = 40)
     private String username;
     
-    @NotBlank
-    @Size(max = 15)
-    private String matricule;
-    
     @NaturalId
     @NotBlank
     @Size(max = 40)
@@ -41,13 +37,13 @@ public class Staff {
     @Size(max = 100)
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "staff_roles",
-            joinColumns = @JoinColumn(name = "satff_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(	name = "user_roles", 
+				joinColumns = @JoinColumn(name = "user_id"), 
+				inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
     
-    @NotBlank
+    
     @Size(min = 3 ,max = 40)
     private String role;
     
@@ -55,12 +51,17 @@ public class Staff {
     	
     }
 
-	public Staff(String username, String matricule, String email, String password,String role, Set <Role> roles) {
+	public Staff(String username, String email, String password,String role, Set <Role> roles) {
 		this.username = username;
-		this.matricule = matricule;
 		this.email = email;
 		this.password = password;
 		this.role = role;
+		this.roles = roles;
+	}
+	public Staff(String username, String email, String password) {
+		this.username = username;
+		this.email = email;
+		this.password = password;
 		this.roles = roles;
 	}
 
@@ -94,18 +95,6 @@ public class Staff {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-	
-
-
-	public String getMatricule() {
-		return matricule;
-	}
-
-
-
-	public void setMatricule(String matricule) {
-		this.matricule = matricule;
 	}
 
 

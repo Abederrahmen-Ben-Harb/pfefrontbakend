@@ -2,8 +2,12 @@ package com.abederrahmen.bng.controllers;
 
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +21,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.abederrahmen.bng.exception.ResourceNotFoundException;
+import com.abederrahmen.bng.models.Role;
 import com.abederrahmen.bng.models.Staff;
+import com.abederrahmen.bng.models.User;
+import com.abederrahmen.bng.payload.request.SignupRequest;
+import com.abederrahmen.bng.payload.response.MessageResponse;
 import com.abederrahmen.bng.repository.StaffRepository;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/staffs")
 public class StaffController {
+	
+		@Autowired
+		PasswordEncoder encoder;
 	
 		@Autowired
 	 	StaffRepository staffRepository;
@@ -37,9 +50,32 @@ public class StaffController {
 		
 		// create staff rest api
 		@PostMapping("/staffs")
-		public Staff createStaff(@RequestBody Staff staff) {
-			return staffRepository.save(staff);
+		public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+			if (staffRepository.existsByUsername(signUpRequest.getUsername())) {
+				return ResponseEntity
+						.badRequest()
+						.body(new MessageResponse("Error: Username is already taken!"));
+			}
+
+			if (staffRepository.existsByEmail(signUpRequest.getEmail())) {
+				return ResponseEntity
+						.badRequest()
+						.body(new MessageResponse("Error: Email is already in use!"));
+			}
+
+			// Create new staff's account
+			Staff staff = new Staff(signUpRequest.getUsername(), 
+								 signUpRequest.getEmail(),
+								 encoder.encode(signUpRequest.getPassword()));
+
+			
+			staffRepository.save(staff);
+
+			return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 		}
+		/*public Staff createStaff(@RequestBody Staff staff) {
+			return staffRepository.save(staff);
+		}*/
 		
 		// get staff by id rest api
 		@GetMapping("/staffs/{id}")
@@ -56,7 +92,6 @@ public class StaffController {
 					.orElseThrow(() -> new ResourceNotFoundException("Staff not exist with id :" + id));
 			
 			staff.setUsername(staffDetails.getUsername());
-			staff.setMatricule(staffDetails.getMatricule());
 			staff.setEmail(staffDetails.getEmail());
 			staff.setPassword(staffDetails.getPassword());
 			staff.setRole(staffDetails.getRole());

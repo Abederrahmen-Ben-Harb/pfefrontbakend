@@ -9,6 +9,8 @@ import com.abederrahmen.bng.models.Staff;
 
 public interface StaffRepository extends JpaRepository<Staff, Long>{
 	Optional<Staff> findByEmail(String email);
+	
+	Optional<Staff> findByUsername(String username);
     
     List<Staff> findUserByUsername(String username);
 
